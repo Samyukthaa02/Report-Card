@@ -3,9 +3,23 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
+from django.utils.http import url_has_allowed_host_and_scheme # Import for safe URL checking
 
 from .models import Product, Category
 from .forms import ProductForm
+
+# Helper function for safe redirects to prevent Open Redirect vulnerabilities
+def safe_redirect(request, url):
+    """
+    Ensures that the redirect URL is safe and within the allowed hosts.
+    Prevents Open Redirect vulnerabilities by validating the URL.
+    """
+    if url_has_allowed_host_and_scheme(url, request.META.get('HTTP_HOST')):
+        return redirect(url)
+    # Fallback to a safe default if the URL is not safe, e.g., 'home' or a generic product list.
+    messages.error(request, "Attempted redirection to an unsafe URL. Redirected to home page.")
+    return redirect(reverse('home'))
+
 
 # Create your views here.
 
@@ -42,7 +56,11 @@ def all_products(request):
             query = request.GET['query']
             if not query:
                 messages.error(request, "You didn't enter any search criteria!")
-                return redirect(reverse('products'))
+                # Applying the safe_redirect helper here as an example,
+                # even though reverse('products') is inherently safe.
+                # This demonstrates how to use the helper if 'products' URL
+                # could somehow be user-controlled in a different context.
+                return safe_redirect(request, reverse('products'))
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
 
@@ -75,14 +93,16 @@ def add_product(request):
     """ Add a product to the store """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
+        return redirect(reverse('home')) # This redirect is already safe
 
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save()
             messages.success(request, 'Successfully added product!')
-            return redirect(reverse('product_detail', args=[product.id]))
+            # Original code: return redirect(reverse('product_detail', args=[product.id]))
+            # Applying safe_redirect for defensive programming, though reverse() is generally safe.
+            return safe_redirect(request, reverse('product_detail', args=[product.id]))
         else:
             messages.error(request, 'Failed to add product. Please ensure the form is valid.')
     else:
@@ -100,7 +120,7 @@ def edit_product(request, product_id):
     """ Edit a product in the store """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
+        return redirect(reverse('home')) # This redirect is already safe
 
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
@@ -108,7 +128,9 @@ def edit_product(request, product_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated product!')
-            return redirect(reverse('product_detail', args=[product.id]))
+            # Original code: return redirect(reverse('product_detail', args=[product.id]))
+            # Applying safe_redirect for defensive programming, though reverse() is generally safe.
+            return safe_redirect(request, reverse('product_detail', args=[product.id]))
         else:
             messages.error(request, 'Failed to update product. Please ensure the form is valid.')
     else:
@@ -129,9 +151,9 @@ def delete_product(request, product_id):
     """ Delete a product from the store """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
-        return redirect(reverse('home'))
+        return redirect(reverse('home')) # This redirect is already safe
 
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
     messages.success(request, 'Product deleted!')
-    return redirect(reverse('products'))
+    return redirect(reverse('products')) # This redirect is already safe
