@@ -1,0 +1,342 @@
+html {
+     height: 100%;
+}
+ body {
+     background-color: #ffffff;
+     background-size: cover;
+     height: calc(100vh - 164px);
+     color: #555;
+     font-family: 'Shippori Mincho B1', serif;
+     text-transform: uppercase;
+}
+/*** INDEX.HTML ***/
+/*** index.html carousel ***/
+ .carousel-item img{
+     max-height: 75rem;
+}
+/*** drop down links and button links on index.html ***/
+ .dropdown-item:hover{
+     background-color: #82868a;
+     color: #fff;
+}
+ .category{
+     -webkit-transition: -webkit-transform .3s;
+     transition: -webkit-transform .3s;
+     -o-transition: transform .3s;
+     transition: transform .3s;
+     transition: transform .3s, -webkit-transform .3s;
+}
+ .category:hover {
+     -webkit-transform: scale(1.01);
+     -ms-transform: scale(1.01);
+     transform: scale(1.01);
+}
+ .card-img {
+     -webkit-filter: brightness(90%);
+     filter: brightness(90%);
+     height: 300px;
+     border: 2px 2px #000000;
+}
+/* from Bulma */
+ .icon {
+     align-items: center;
+     display: inline-flex;
+     justify-content: center;
+     height: 1.5rem;
+     width: 1.5rem;
+}
+ .main-logo-link {
+     width: fit-content;
+}
+ .shop-now-button {
+     background: black;
+     color: white;
+     min-width: 260px;
+}
+ .btn-black {
+     background: black;
+     color: white;
+}
+ .shop-now-button:hover, .shop-now-button:active, .shop-now-button:focus, .btn-black:hover, .btn-black:active, .btn-black:focus {
+     background: #222;
+     color: white;
+}
+ .text-black {
+     color: #000 !important;
+}
+ .border-black {
+     border: 1px solid black !important;
+}
+ .bg-black {
+     background: #000000 !important;
+}
+ .message-container {
+     position: fixed;
+     top: 72px;
+     right: 15px;
+     z-index: 99999999999;
+}
+ .custom-toast {
+     overflow: visible;
+}
+ .toast-capper {
+     height: 2px;
+}
+/*** Products .html ***/
+ .products-title {
+     padding-top: 15px;
+}
+/*** BUTTONS ***/
+ .btn-dark:hover{
+     color: #8b8b89;
+}
+ .btt-button {
+     height: 42px;
+     width: 42px;
+     position: fixed;
+     bottom: 10px;
+     right: 10px;
+}
+ .button-up, .update-link, .remove-item {
+     cursor: pointer;
+}
+ .dropdown-btn{
+     width: 15rem;
+}
+.signup-btn {
+    margin: 15px;
+    text-transform: uppercase;
+}
+/*** FOOTER ***/
+ .footer-down{
+     min-height: calc(100vh - 440px);
+}
+ .allauth-footer-down{
+     min-height: calc(100vh - 266px);
+}
+ .large{
+     font-size: large;
+}
+/*** LOGO ***/
+ .logo{
+     height: 7rem;
+}
+/*** ALLAUTH FORM FORMATTING ***/
+ .allauth-form-inner-content p {
+     margin-top: 1.5rem;
+    /* mt-4 */
+     color: #6c757d;
+    /* text-secondary */
+}
+ .allauth-form-inner-content input {
+     border-color: #000;
+     border-radius: 0;
+}
+ .allauth-form-inner-content label:not([for='id_remember']) {
+     display: none;
+}
+ .allauth-form-inner-content input::-webkit-input-placeholder {
+     color: #aab7c4;
+}
+ .allauth-form-inner-content input::-moz-placeholder {
+     color: #aab7c4;
+}
+ .allauth-form-inner-content input:-ms-input-placeholder {
+     color: #aab7c4;
+}
+ .allauth-form-inner-content input::-ms-input-placeholder {
+     color: #aab7c4;
+}
+ .allauth-form-inner-content input::placeholder {
+     color: #aab7c4;
+}
+ .allauth-form-inner-content button, .allauth-form-inner-content input[type='submit'] {
+    /* btn */
+     display: inline-block;
+     font-weight: 400;
+     color: #fff;
+     text-align: center;
+     vertical-align: middle;
+     -webkit-user-select: none;
+     -moz-user-select: none;
+     -ms-user-select: none;
+     user-select: none;
+     background-color: #000;
+     border: 1px solid #000;
+     padding: .375rem .75rem;
+     font-size: 1rem;
+     line-height: 1.5;
+     border-radius: 0;
+    /* standard bootstrap btn transitions */
+     -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+     -o-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+}
+ .allauth-form-inner-content button:hover, .allauth-form-inner-content input[type='submit']:hover {
+     color: #fff;
+     background-color: #222;
+     border-color: #222;
+}
+ .allauth-form-inner-content a {
+     color: #17a2b8;
+    /* text-info */
+}
+/*** ORDER SUMMARY ***/
+ .order-history {
+     max-height: 416px;
+    /* height of profile form + submit button */
+     overflow-y: auto;
+}
+ .table-sm td{
+     padding: 0.8rem;
+}
+/*** PRODUCT FORM ***/
+ .btn-file {
+     position: relative;
+     overflow: hidden;
+}
+ .btn-file input[type="file"] {
+     position: absolute;
+     top: 0;
+     right: 0;
+     min-width: 100%;
+     min-height: 100%;
+     opacity: 0;
+     cursor: pointer;
+}
+ .custom-checkbox .custom-control-label::before {
+     border-radius: 0;
+     border-color: #dc3545;
+}
+ .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+     background-color: #dc3545;
+     border-color: #dc3545;
+     border-radius: 0;
+}
+/*** LOADING SPINNER ****/
+ #loading-overlay {
+     display: none;
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: rgba(96, 97, 95, 0.85);
+     z-index: 9999;
+}
+ .loading-spinner {
+     display: -webkit-box;
+     display: -ms-flexbox;
+     display: flex;
+     -webkit-box-align: center;
+     -ms-flex-align: center;
+     align-items: center;
+     -webkit-box-pack: center;
+     -ms-flex-pack: center;
+     justify-content: center;
+     margin: 0;
+     height: 100%;
+}
+/* SIGN-UP PAGE */
+.site-header {
+    padding-top: 50px;
+}
+
+/* -------------------------------- Media Queries */
+/* Slightly larger container on xl screens */
+ @media (min-width: 1200px) {
+     .container {
+         max-width: 80%;
+    }
+}
+/*** MEDIA QUERIES ***/
+/* fixed top navbar only on medium and up */
+ @media (min-width: 992px) {
+     .fixed-top-desktop-only {
+         position: fixed;
+         top: 0;
+         right: 0;
+         left: 0;
+         z-index: 1030;
+    }
+     .header-container {
+         padding-top: 160px;
+    }
+     .header-container-checkout{
+         padding-top: 175px;
+    }
+     .list-inline-item:not(:last-child){
+         margin-right: 0.5rem;
+    }
+}
+/* pad the top a bit when navbar is collapsed on mobile */
+ @media (max-width: 991px) {
+     .header-container {
+         padding-top: 80px;
+    }
+     .nav-link {
+         padding: 0.15rem;
+    }
+     .nav-link i.fa-lg {
+         font-size: 1rem;
+    }
+     .navbar-toggler {
+         padding: .6rem .6rem;
+         font-size: 1rem;
+    }
+}
+ @media (min-width: 768px) and (max-width: 992px){
+     .footer-down-basket{
+         min-height: calc(100vh - 278px);
+    }
+}
+ @media (min-width: 600px) and (max-width: 991px){
+     .card-img-overlay h4{
+         font-size: 2rem;
+    }
+}
+ @media (max-height: 680px){
+     .footer-down{
+         margin-bottom: 20px;
+    }
+}
+ @media (min-width: 768px) and (max-width: 991px){
+     .footer-down{
+         min-height: calc(100vh - 280px);
+    }
+}
+ @media (min-width: 320px) and (max-width: 991px) {
+     .secure-checkout-btn, .keep-shopping, .secure-checkout-btn i, .keep-shopping i {
+         font-size: 14px;
+    }
+}
+ @media (min-width: 378px) and (max-width: 991px) {
+     .list-inline-item:not(:last-child){
+         margin-right: 2.5rem;
+    }
+}
+ @media (max-width: 377px) {
+     .header-container {
+         padding-top: 100px;
+    }
+     .keep-shopping-btn, .keep-shopping, .add-to-basket-btn, .secure-checkout-btn{
+         padding: .250rem 
+    }
+}
+ @media (min-width: 320px) and (max-width: 377px){
+     .list-inline-item:not(:last-child){
+         margin-right: 1.5rem;
+    }
+}
+ @media (min-width: 320px) and (max-width: 377px){
+     .products-title{
+         padding-top: 50px;
+    }
+ @media (min-width: 320px) and (max-width: 377px){
+     .carousel-item{
+         padding-top: 50px;
+    }  
+}
+}
