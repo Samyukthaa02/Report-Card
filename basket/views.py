@@ -2,6 +2,7 @@ from django.shortcuts import (render, redirect,
                               reverse, HttpResponse, get_object_or_404)
 from django.contrib import messages
 from products.models import Product
+from django.utils.http import is_safe_url
 
 
 # Create your views here.
@@ -28,6 +29,12 @@ def add_to_basket(request, item_id):
 
     request.session['basket'] = basket
     print(request.session['basket'])
+
+    # Validate the redirect_url
+    url_is_safe = is_safe_url(redirect_url, allowed_hosts={request.get_host()})
+    if not url_is_safe:
+        redirect_url = reverse('home')  # Redirect to home page or a safe default
+
     return redirect(redirect_url)
 
 
