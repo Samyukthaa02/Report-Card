@@ -82,7 +82,13 @@ def add_product(request):
         if form.is_valid():
             product = form.save()
             messages.success(request, 'Successfully added product!')
-            return redirect(reverse('product_detail', args=[product.id]))
+            # Start of vulnerability fix for Open Redirect
+            if isinstance(product.id, int) and product.id > 0:
+                return redirect(reverse('product_detail', args=[product.id]))
+            else:
+                messages.error(request, 'Error: Invalid product ID generated.')
+                return redirect(reverse('products')) # Fallback to a safe page
+            # End of vulnerability fix
         else:
             messages.error(request, 'Failed to add product. Please ensure the form is valid.')
     else:
@@ -108,7 +114,13 @@ def edit_product(request, product_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Successfully updated product!')
-            return redirect(reverse('product_detail', args=[product.id]))
+            # Start of vulnerability fix for Open Redirect
+            if isinstance(product.id, int) and product.id > 0:
+                return redirect(reverse('product_detail', args=[product.id]))
+            else:
+                messages.error(request, 'Error: Invalid product ID encountered during update.')
+                return redirect(reverse('products')) # Fallback to a safe page
+            # End of vulnerability fix
         else:
             messages.error(request, 'Failed to update product. Please ensure the form is valid.')
     else:
